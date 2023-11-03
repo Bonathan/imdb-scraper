@@ -43,20 +43,11 @@ def get_the_subpage(url):
     subpage = requests.get("https://imdb.com" + url, headers=headers)
     subpage_soup = BeautifulSoup(subpage.text, features="lxml")
 
-    # print(subpage.text)
-    # print("https://imdb.com" + url)
-
     movie_money = ["budget", "grossdomestic", "openingweekenddomestic", "cumulativeworldwidegross"]
 
     money = list()
 
-    # data-testid="title-boxoffice-budget"
-    # data-testid="title-boxoffice-grossdomestic"
-    # data-testid="title-boxoffice-openingweekenddomestic"
-    # data-testid="title-boxoffice-cumulativeworldwidegross"
-
     for i in movie_money:
-        print(extract_box_office_info(subpage_soup, i))
         money.append(extract_box_office_info(subpage_soup, i))
     
     if len(money) > 0:
@@ -67,20 +58,14 @@ def get_the_subpage(url):
         return None
 
 # define the url for the page to be indexed
-# main_page_url = "https://www.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2020-12-31&user_rating=1.0,10.0&countries=US&languages=en&sort=release_date,asc&start=1&ref_=adv_nxt"
 main_page_url_a = "https://www.imdb.com/search/title/?title_type=feature&release_date=2010-01-01,2020-12-31&user_rating=1.0,10.0&countries=US&languages=en&sort=release_date,asc&start="
 main_page_url_b = "&ref_=adv_nxt"
 
 for i in range(460):
-    print(i)
+    print("current page:" + str(i+1))
 
     # GET request
     content = requests.get(main_page_url_a + str(i*50+1) + main_page_url_b)
-
-    # write it to a file -> for trial purposes demo.html
-    # main_page = open("demo.html", "w")
-    # main_page.write(content.text)
-    # main_page.close()
 
     # initialize soup
     soup = BeautifulSoup(content.text, features="lxml")
@@ -107,7 +92,6 @@ for i in range(460):
             subpage_contents = get_the_subpage(filtered_links[i])
 
             for j, r in enumerate(subpage_contents):
-                print("subpage: " + str(i) + str(r))
                 revenue_file = open("revenue.txt", "a")
                 revenue_file.write(str(r) + "; ")
                 revenue_file.close  
@@ -115,18 +99,5 @@ for i in range(460):
             revenue_file = open("revenue.txt", "a")
             revenue_file.write("\n")
             revenue_file.close
-
-    # print the amount of links, to make sure everything went right
-    # print(len(filtered_links))
-
-    for j in range(50):
-        # print("i: " + str(i))
-        get_the_subpage(filtered_links[i])
-
-
-
-
-
-print(revenue)
 
 get_the_subpage("/title/tt1053424/")
