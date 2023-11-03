@@ -12,4 +12,4 @@ with the dependencies installed, run `scraper.py`. it will print in the output w
 URL; grossdomestic; openingweekendsdomestic; cumulativeworldwidegross; releasedate; countryoforigin; runtime;
 ```
 
-if there is no information in the corresponding field, it will be filled with `None`. the creation/maintenance of the `revenue.txt` file will be handled automatically, there is no need to delete it, as the program wipes it, when starting.
+if there is no information in the corresponding field, it will be filled with `None`. the creation/maintenance of the `revenue.txt` file will be handled automatically, there is no need to delete it, as the program wipes it, when starting. furthermore, the `revenue.txt` file will be ignored by git.
