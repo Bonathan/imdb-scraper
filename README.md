@@ -7,11 +7,9 @@ little, more or less lightweight, python imdb scraper for box office data
 - re (regular expression to filter the list with URLs)
 
 ## usage
-with the dependencies installed, run `scraper.py`. it will print in the output what page it's on (pages one to 460). it will write the URL and the box office information in a text file (`revenue.txt`), separated by semicolons.
+with the dependencies installed, run `scraper.py`. it will print in the output what page it's on (pages one to 460), and what subpage (pages one to 50, per each of the 460 pages). it will write the URL and the box office information in a text file (`revenue.txt`), separated by semicolons.
 ```
-/title/tt1053424; $32,000,000 (estimated); $13,794,835; $6,126,170; $18,409,891;
-/title/tt1535568; $500,000 (estimated); $20,615; $2,966; $20,615;
-/title/tt1277144; $205,000 (estimated); None; None; None;
+URL; grossdomestic; openingweekendsdomestic; cumulativeworldwidegross; releasedate; countryoforigin; runtime;
 ```
 
-if there is no information in the corresponding field, it will be filled with `None`.
+if there is no information in the corresponding field, it will be filled with `None`. the creation/maintenance of the `revenue.txt` file will be handled automatically, there is no need to delete it, as the program wipes it, when starting.
