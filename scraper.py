@@ -133,6 +133,9 @@ for i in range(460):
     for i, n in enumerate(filtered_links):
         file.write(str(n) + "; ")
 
+        if get_the_subpage(filtered_links[i]) == None:
+            continue
+
         subpage_contents = get_the_subpage(filtered_links[i])
 
         for j, r in enumerate(subpage_contents):
